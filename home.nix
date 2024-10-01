@@ -85,6 +85,10 @@
       source = config.lib.file.mkOutOfStoreSymlink "/home/erict/.config/home-manager/.config/nix";
       recursive = true;
     };
+    "nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/erict/.config/home-manager/.config/nvim";
+      recursive = true;
+    };
   };
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
