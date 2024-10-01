@@ -1,0 +1,20 @@
+[user]
+  email = erictrautsch@outlook.com
+  name = erictrautsch
+[core]
+  excludesfile = "~/.config/git/ignore"
+  editor = nvim
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[push]
+  default = current
+[fetch]
+    # https://stackoverflow.com/a/8255687/5246998
+    prune = true
+[http]
+    # https://stackoverflow.com/a/6849424/5246998
+    postBuffer = 1048576000
+[init]
+	defaultBranch = main
