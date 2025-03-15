@@ -24,6 +24,7 @@
 
     # Generic tools
     pkgs.gcc
+    pkgs.eza
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -31,6 +32,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
 
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -65,7 +67,12 @@
       userEmail = "eric.trautsch@precedent.com";
     };
 
-    bash.enable = true; # see note on other shells below
+    bash = {
+      enable = true; # see note on other shells below
+      shellAliases = {
+        ls = "eza -al";
+      };
+    };
   };
 
   # Home Manager can also manage your environment variables through
