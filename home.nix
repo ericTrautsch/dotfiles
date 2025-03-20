@@ -1,8 +1,15 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
+
   home.username = "erict";
   home.homeDirectory = "/home/erict";
 
@@ -21,10 +28,18 @@
     # Development environment
     pkgs.neovim
     pkgs.zellij
+    pkgs.gum
+    pkgs.awscli2
+    pkgs.pipenv
+    pkgs.ripgrep
 
     # Generic tools
     pkgs.gcc
     pkgs.eza
+    
+    # Graphical tools
+    pkgs.firefox-unwrapped
+    pkgs.spotify
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -32,9 +47,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
-
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -64,13 +76,20 @@
     git = {
       enable = true;
       userName = "Eric Trautsch";
-      userEmail = "eric.trautsch@precedent.com";
+      userEmail = "erictrautsch@outlook.com";
     };
 
     bash = {
       enable = true; # see note on other shells below
+      bashrcExtra = "
+        source ~/scratch/drata/fix_drata.sh
+        ";
       shellAliases = {
-        ls = "eza -al";
+        ls = "eza";
+        ll = "eza -al";
+        config = "nvim ~/_/home.nix";
+        home = "home-manager switch";
+        repos = "cd ~/repos/ && cd $(eza | gum choose)";
       };
     };
   };
@@ -81,6 +100,7 @@
   # through Home Manager then you have to manually source 'hm-session-vars.sh'
   home.sessionVariables = {
     EDITOR = "nvim";
+    AWS_DEFAULT_REGION="us-east-1";
     # EDITOR = "emacs";
   };
 
